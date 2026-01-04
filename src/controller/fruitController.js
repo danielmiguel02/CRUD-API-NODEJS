@@ -1,4 +1,10 @@
-import { createFruitService, getAllFruitsService, updateFruitService } from "../models/fruitModel";
+import {
+    createFruitService,
+    getFruitByIdService,
+    getAllFruitsService,
+    updateFruitService,
+    deleteFruitService
+} from "../models/fruitModel.js";
 
 // Standardized controller for fruit-related operations
 const handleResponse = (res, status, message, data = null) => {

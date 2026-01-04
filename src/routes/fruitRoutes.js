@@ -1,5 +1,5 @@
 import express from 'express';
-import { createFruit, deleteFruit, getAllFruits, getFruitById, updateFruit } from '../controller/fruitController';
+import { createFruit, deleteFruit, getAllFruits, getFruitById, updateFruit } from '../controller/fruitController.js';
 
 const router = express.Router();
 
