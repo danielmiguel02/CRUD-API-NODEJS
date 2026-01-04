@@ -5,6 +5,7 @@ import cors from 'cors';
 import pool from './config/db.js';
 import fruitRoutes from './routes/fruitRoutes.js';
 import errorHandling from './middlewares/errorHandler.js';
+import {createDatabase, createTables} from './data/databaseManagement.js';
 
 dotenv.config();
 
@@ -17,6 +18,10 @@ app.use(cors());
 
 // Routes
 app.use("/api", fruitRoutes);
+
+// Creates database and tables if they do not exist
+app.use(createDatabase);
+app.use(createTables);
 
 // Error handling middleware
 app.use(errorHandling);

@@ -1,0 +1,7 @@
+// .env db connection
+// Please set your own database credentials below
+// DB_USER=
+// DB_HOST=
+// DB_DATABASE=
+// DB_DBPORT=
+// DB_PASSWORD=
