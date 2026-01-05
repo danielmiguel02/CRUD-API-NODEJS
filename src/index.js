@@ -20,8 +20,7 @@ app.use(cors());
 app.use("/api", fruitRoutes);
 
 // Creates database and tables if they do not exist
-app.use(createDatabase);
-app.use(createTables);
+createTables();
 
 // Error handling middleware
 app.use(errorHandling);
