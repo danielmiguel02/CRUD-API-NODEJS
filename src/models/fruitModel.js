@@ -10,6 +10,11 @@ export const getAllFruitsService = async () => {
     return result.rows;
 };
 
+export const getAllFruitsByNameService = async (name) => {
+    const result = await pool.query("SELECT * FROM fruits WHERE name ILIKE $1", [name]);
+    return result.rows;
+};
+
 export const createFruitService = async (name, color, weight) => {
     const result = await pool.query("INSERT INTO fruits (name, color, weight) VALUES ($1, $2, $3) RETURNING *", [name, color, weight]);
     return result.rows[0];

@@ -3,7 +3,8 @@ import {
     getFruitByIdService,
     getAllFruitsService,
     updateFruitService,
-    deleteFruitService
+    deleteFruitService,
+    getAllFruitsByNameService
 } from "../models/fruitModel.js";
 
 // Standardized controller for fruit-related operations
@@ -41,6 +42,13 @@ export const getAllFruits = async (req, res, next) => {
         handleResponse(res, 200, "Fruits retrieved successfully", fruits);
     } catch (err) { next(err); }
 };
+
+export const getAllFruitsByName = async (req, res, next) => {
+    try {
+        const fruits = await getAllFruitsByNameService(req.params.name);
+        handleResponse(res, 200, "Fruits retrieved successfully", fruits);
+    } catch (err) { next(err); }
+}
 
 export const updateFruit = async (req, res, next) => {
     const {name, color, weight} = req.body;

@@ -24,7 +24,7 @@ const databaseExists = async (dbName) => {
 };
 
 // Creates database if it doesn't exist
-export const createDatabase = async () => {
+const createDatabase = async () => {
     console.log("Running createDatabase...");
 
     if (await databaseExists(dbName)) return;
