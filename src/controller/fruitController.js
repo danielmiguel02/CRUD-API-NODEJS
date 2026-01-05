@@ -38,15 +38,49 @@ export const getFruitById = async (req, res, next) => {
 
 export const getAllFruits = async (req, res, next) => {
     try {
-        const fruits = await getAllFruitsService();
-        handleResponse(res, 200, "Fruits retrieved successfully", fruits);
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+
+        const safeLimit = Math.min(limit, 100); // Cap limit to 100
+        const offset = (page - 1) * safeLimit;
+
+        const result = await getAllFruitsService({
+            limit: safeLimit,
+            offset
+        });
+
+        handleResponse(res, 200, "Fruits retrieved successfully", {
+            page,
+            limit: safeLimit,
+            totalItems: result.totalItems,
+            totalPages: Math.ceil(result.totalItems / safeLimit),
+            fruits: result.fruits
+        });
+
     } catch (err) { next(err); }
 };
 
 export const getAllFruitsByName = async (req, res, next) => {
     try {
-        const fruits = await getAllFruitsByNameService(req.params.name);
-        handleResponse(res, 200, "Fruits retrieved successfully", fruits);
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+
+        const safeLimit = Math.min(limit, 100); // Cap limit to 100
+        const offset = (page - 1) * safeLimit;
+
+        const result = await getAllFruitsByNameService({
+            name: `${req.params.name}`,
+            limit: safeLimit,
+            offset
+        });
+
+        handleResponse(res, 200, "Fruits retrieved successfully", {
+            page,
+            limit: safeLimit,
+            totalItems: result.totalItems,
+            totalPages: Math.ceil(result.totalItems / safeLimit),
+            fruits: result.fruits
+        });
     } catch (err) { next(err); }
 }
 

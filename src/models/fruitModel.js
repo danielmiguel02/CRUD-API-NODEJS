@@ -5,14 +5,22 @@ export const getFruitByIdService = async (id) => {
     return result.rows[0];
 };
 
-export const getAllFruitsService = async () => {
-    const result = await pool.query("SELECT * FROM fruits");
-    return result.rows;
+export const getAllFruitsService = async ({ limit, offset }) => {
+    const result = await pool.query("SELECT * FROM fruits ORDER BY id LIMIT $1 OFFSET $2",[limit, offset]);
+
+    const totalResult = await pool.query("SELECT COUNT(*) FROM fruits");
+    const totalItems = parseInt(totalResult.rows[0].count, 10);
+
+    return { fruits: result.rows, totalItems };
 };
 
-export const getAllFruitsByNameService = async (name) => {
-    const result = await pool.query("SELECT * FROM fruits WHERE name ILIKE $1", [name]);
-    return result.rows;
+export const getAllFruitsByNameService = async ({ name, limit, offset }) => {
+    const result = await pool.query("SELECT * FROM fruits WHERE name ILIKE $1 ORDER BY id LIMIT $2 OFFSET $3", [name, limit, offset]);
+
+    const totalResult = await pool.query("SELECT COUNT(*) FROM fruits WHERE name ILIKE $1", [name]);
+    const totalItems = parseInt(totalResult.rows[0].count, 10);
+
+    return { fruits: result.rows, totalItems };
 };
 
 export const createFruitService = async (name, color, weight) => {
