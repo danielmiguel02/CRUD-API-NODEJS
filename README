@@ -1,7 +1,71 @@
-// .env db connection
-// Please set your own database credentials below
-// DB_USER=
-// DB_HOST=
-// DB_DATABASE=
-// DB_DBPORT=
-// DB_PASSWORD=
+CRUD-API-NODEJS
+A simple CRUD REST API built with Node.js, Express, and PostgreSQL to manage a fruits database.
+The API automatically creates the database and tables if they do not exist when running the dev script.
+
+
+NOTES
+- Make sure PostgreSQL is running before starting the server.
+- Default port can be changed in the .env file. 
+- If your PORT doesn't work index.js will use PORT '5006'.
+
+
+Tech Stack
+- Node.js
+- Express.js
+- PostgreSQL
+- pg
+- dotenv
+- nodemon
+
+
+Project Setup
+- Clone the repository
+    git clone https://github.com/danielmiguel02/CRUD-API-NODEJS.git
+    cd CRUD-API-NODEJS
+
+- Install Dependencies
+    npm i
+
+- Environment Variables
+    Create a .env file in the root of the project and add your PostgreSQL credentials:
+    DB_USER=your_db_user
+    DB_HOST=localhost
+    DB_DATABASE=your_database_name
+    DB_PORT=5432
+    DB_PASSWORD=your_password
+
+- Running the project
+    npm run dev
+
+
+API Endpoints
+
+METHOD       ROUTES                     DESCRIPTION
+-----------------------------------------------------------------------------
+GET            /fruits                  Gets all fruits
+GET            /fruits/id/:id           Gets fruit by ID
+GET            /fruits/name/:name       Gets all fruits by name
+POST           /fruits                  Creates a fruit (name, color, weight)
+PUT            /fruits/:id              Updates a fruit by ID 
+DELETE         /fruits/:id              Deletes a fruit by ID
+
+
+Database Schema
+
+id SERIAL PRIMARY KEY
+name VARCHAR(100) NOT NULL
+color VARCHAR(50) NOT NULL
+weight FLOAT
+
+
+POST Example
+
+{
+  "name": "Apple",
+  "color": "Red",
+  "weight": 150
+}
+
+
+Author
+Daniel Miguel
