@@ -1,5 +1,5 @@
 CRUD-API-NODEJS
-A simple CRUD REST API built with Node.js, Express, and PostgreSQL to manage a fruits database.
+A simple CRUD REST API built with Node.js, Express, PostgreSQL, and Docker to manage a fruits database.
 The API automatically creates the database and tables if they do not exist when running the dev script.
 
 
